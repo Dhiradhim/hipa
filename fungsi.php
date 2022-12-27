@@ -1,4 +1,14 @@
 <?php
+function getvalue_aps($value,$tabel,$where,$cond)
+{
+    include('koneksi.php');
+    $sql = "SELECT $value FROM $tabel WHERE $where='$cond'";
+    $query = mysqli_query($con_aps,$sql);
+    $row = mysqli_fetch_assoc($query);
+    $text=$row[$value];
+    return $text;
+}
+
 function getlokasi()
 {
     include('koneksi.php');

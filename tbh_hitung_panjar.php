@@ -71,12 +71,16 @@
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
-                          <label>Tambahan Panjar</label>
+                          <label>Biaya Panjar</label>
                           <input type="text" class="form-control" id="rupiah" name="biaya">
                         </div>
                         <div class="form-group col-md-4">
                           <label>Untuk: </label>
-                          <input type="text" class="form-control" readonly name="untuk" value="Tambahan Panjar Biaya Perkara Tingkat Pertama">
+                          <select class="form-control" name="untuk">
+                            <option value="-" hidden>Pilih Jenis Pembayaran</option>
+                            <option value="Panjar Biaya Perkara Tingkat Pertama">Panjar Biaya Perkara Tingkat Pertama</option>
+                            <option value="Tambahan Panjar Biaya Perkara Tingkat Pertama">Tambahan Panjar Biaya Perkara Tingkat Pertama</option>
+                          </select>
                         </div>
                       </div>
                     

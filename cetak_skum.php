@@ -6,6 +6,7 @@
 	<!--onLoad="window.print(); window.close();"-->
 	<?php 
     include('koneksi.php');
+    include('fungsi.php');
     $nm_bln=array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni',
                '07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
         $id=$_GET['id'];
@@ -13,6 +14,9 @@
         $query_skum = mysqli_query($con,$sql_skum);
         $row_skum = mysqli_fetch_assoc($query_skum);
         foreach($row_skum as $key=>$value) {$$key=$value;}
+		$nm_kasir=getvalue_aps('value','keu_config','kd','nm_kasir');
+		$nip_kasir=getvalue_aps('value','keu_config','kd','nip_kasir');
+
         $tanggal_panjang=substr($tanggal,8,2).' '.$nm_bln[substr($tanggal,5,2)].' '.substr($tanggal,0,4);
         
 function Terbilang($x)
@@ -87,8 +91,8 @@ $ter_bi=Terbilang($biaya);
 			<br/>
 			<p><span style="font-size: medium; font-family: arial,helvetica,sans-serif;">
 				<strong><span style="text-decoration: underline;">
-				(</span></strong><strong><span style="text-decoration: underline;">Shofiya Hasanah, A.Md.)</span></strong></span><br/>
-			<span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>NIP.199605032022032010</strong><strong></strong></span></p>
+				(</span></strong><strong><span style="text-decoration: underline;"><?=$nm_kasir?>)</span></strong></span><br/>
+			<span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>NIP.<?=$nip_kasir?></strong><strong></strong></span></p>
 		</td>
 	</tr>
 </table>

@@ -28,14 +28,23 @@ include("koneksi.php");
   $query_cek_no = mysqli_query($con,$sql_cek_no);
   $row_cek_no = mysqli_fetch_assoc($query_cek_no);
 
+  $sql_cek_perkara = "SELECT no_perkara FROM skum WHERE id='$id'";
+  $query_cek_perkara = mysqli_query($con,$sql_cek_perkara);
+  $row_cek_perkara = mysqli_fetch_assoc($query_cek_perkara);
+
   if($row_cek_no['COUNT(*)']==1){
     echo "<script type='text/javascript'>alert('No Perkara $no_perkara belum didaftarkan di SIPP!');</script>";
     echo "<script type='text/javascript'>window.location.href='data_panjar.php'</script>";
-  } else{
-
-  $sql_update = "UPDATE skum SET tanggal='$tanggal', no_skum='$no_skum', no_perkara='$no_perkara', bayar='1' WHERE id='$id'";
-  $query = mysqli_query($con,$sql_update);
-  echo "<script type='text/javascript'>alert('Data Tersimpan');</script>";
-  echo "<script type='text/javascript'>window.location.href='data_panjar.php'</script>";
+  } else if (!empty($row_cek_perkara['no_perkara'])){
+    $sql_update = "UPDATE skum SET tanggal='$tanggal', no_skum='$no_skum', bayar='1' WHERE id='$id'";
+    $query = mysqli_query($con,$sql_update);
+    echo "<script type='text/javascript'>alert('Data Tersimpan');</script>";
+    echo "<script type='text/javascript'>window.location.href='data_panjar.php'</script>";
+  } else {
+    $sql_update = "UPDATE skum SET tanggal='$tanggal', no_skum='$no_skum', no_perkara='$no_perkara', bayar='1' WHERE id='$id'";
+    $query = mysqli_query($con,$sql_update);
+    echo "<script type='text/javascript'>alert('Data Tersimpan');</script>";
+    echo "<script type='text/javascript'>window.location.href='data_panjar.php'</script>";
   }
+
 ?>  

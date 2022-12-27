@@ -19,9 +19,6 @@
         <a href="tab_hitung_panjar.php" class="nav-link"><i class="fas fa-columns"></i><span>Hitung Panjar Tabayyun</span></a>
       </li>
       <li class="dropdown">
-        <a href="ec_hitung_panjar.php" class="nav-link"><i class="fas fa-columns"></i><span>Hitung Panjar E-Court</span></a>
-      </li>
-      <li class="dropdown">
         <a href="tbh_hitung_panjar.php" class="nav-link"><i class="fas fa-columns"></i><span>Tambah Panjar Perkara</span></a>
       </li>
       <li class="dropdown">
