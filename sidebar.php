@@ -9,7 +9,7 @@
     <ul class="sidebar-menu">
       <li class="menu-header">Dashboard</li>
       <li class="dropdown">
-        <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+        <a href="index.php" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
       </li>
       <li class="menu-header">Apps</li>
       <li class="dropdown">
