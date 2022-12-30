@@ -1,9 +1,12 @@
 <?php
 include('koneksi.php');
-$sql = "SELECT * FROM kota";
-$query = $mysqli->query($sql);
+$prop_name = $_GET['prop_name'];
+$sql = "SELECT DISTINCT kabkota FROM data_komdanas WHERE prop_name='$prop_name'";
+$query = mysqli_query($con,$sql);
+$row = mysqli_fetch_assoc($query);
 $data = array();
-while($row = $query->fetch_array(MYSQLI_ASSOC)){
-$data[] = array("id_kota" => $row['id'], "nama" => $row['nama']);
-}
-echo json_encode($data);?>
+do {
+$data[] = array("kabkota" => $row['kabkota']);
+} while($row = mysqli_fetch_assoc($query));
+echo json_encode($data);
+?>

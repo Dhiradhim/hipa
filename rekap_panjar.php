@@ -46,16 +46,46 @@
 
       $jenis_perkara_id=$_POST['jenis_perkara_id'];
       $penyetor=$_POST['penyetor'];
-      $biaya1=$_POST['biaya1'];
-      $biaya2=$_POST['biaya2'];
-      $biaya3=$_POST['biaya3'];
-      $biaya4=$_POST['biaya4'];
-      $biaya5=$_POST['biaya5'];
-      $biaya6=$_POST['biaya6'];
-      $biaya7=$_POST['biaya7'];
-      $biaya8=$_POST['biaya8'];
-      $biaya9=$_POST['biaya9'];
-      $biaya10=$_POST['biaya10'];
+      $kelurahan1=$_POST['kelurahan1'];
+      $kelurahan2=$_POST['kelurahan2'];
+      $kelurahan3=$_POST['kelurahan3'];
+      $kelurahan4=$_POST['kelurahan4'];
+      $kelurahan5=$_POST['kelurahan5'];
+      $kelurahan6=$_POST['kelurahan6'];
+      $kelurahan7=$_POST['kelurahan7'];
+      $kelurahan8=$_POST['kelurahan8'];
+      $kelurahan9=$_POST['kelurahan9'];
+      $kelurahan10=$_POST['kelurahan10'];
+      $biaya_pos1=$_POST['biaya_pos1'];
+      $biaya_pos2=$_POST['biaya_pos2'];
+      $biaya_pos3=$_POST['biaya_pos3'];
+      $biaya_pos4=$_POST['biaya_pos4'];
+      $biaya_pos5=$_POST['biaya_pos5'];
+      $biaya_pos6=$_POST['biaya_pos6'];
+      $biaya_pos7=$_POST['biaya_pos7'];
+      $biaya_pos8=$_POST['biaya_pos8'];
+      $biaya_pos9=$_POST['biaya_pos9'];
+      $biaya_pos10=$_POST['biaya_pos10'];
+      $biaya_pos1=biaya_pos($biaya_pos1);
+      $biaya_pos2=biaya_pos($biaya_pos2);
+      $biaya_pos3=biaya_pos($biaya_pos3);
+      $biaya_pos4=biaya_pos($biaya_pos4);
+      $biaya_pos5=biaya_pos($biaya_pos5);
+      $biaya_pos6=biaya_pos($biaya_pos6);
+      $biaya_pos7=biaya_pos($biaya_pos7);
+      $biaya_pos8=biaya_pos($biaya_pos8);
+      $biaya_pos9=biaya_pos($biaya_pos9);
+      $biaya_pos10=biaya_pos($biaya_pos10);
+      $biaya1=biaya($kelurahan1);
+      $biaya2=biaya($kelurahan2);
+      $biaya3=biaya($kelurahan3);
+      $biaya4=biaya($kelurahan4);
+      $biaya5=biaya($kelurahan5);
+      $biaya6=biaya($kelurahan6);
+      $biaya7=biaya($kelurahan7);
+      $biaya8=biaya($kelurahan8);
+      $biaya9=biaya($kelurahan9);
+      $biaya10=biaya($kelurahan10);
       $pihak1=$_POST['pihak1'];
       $pihak2=$_POST['pihak2'];
       $pihak3=$_POST['pihak3'];
@@ -69,28 +99,28 @@
 
       $alur=alur($jenis_perkara_id);
       
-      $field_biaya1=field_biaya($jenis_perkara_id,$pihak1,$biaya1,'1');
-      $field_biaya2=field_biaya($jenis_perkara_id,$pihak2,$biaya2,'2');
-      $field_biaya3=field_biaya($jenis_perkara_id,$pihak3,$biaya3,'3');
-      $field_biaya4=field_biaya($jenis_perkara_id,$pihak4,$biaya4,'4');
-      $field_biaya5=field_biaya($jenis_perkara_id,$pihak5,$biaya5,'5');
-      $field_biaya6=field_biaya($jenis_perkara_id,$pihak6,$biaya6,'6');
-      $field_biaya7=field_biaya($jenis_perkara_id,$pihak7,$biaya7,'7');
-      $field_biaya8=field_biaya($jenis_perkara_id,$pihak8,$biaya8,'8');
-      $field_biaya9=field_biaya($jenis_perkara_id,$pihak9,$biaya9,'9');
-      $field_biaya10=field_biaya($jenis_perkara_id,$pihak10,$biaya10,'10');
+      $field_biaya1=field_biaya($jenis_perkara_id,$pihak1,$biaya1,'1',$biaya_pos1);
+      $field_biaya2=field_biaya($jenis_perkara_id,$pihak2,$biaya2,'2',$biaya_pos2);
+      $field_biaya3=field_biaya($jenis_perkara_id,$pihak3,$biaya3,'3',$biaya_pos3);
+      $field_biaya4=field_biaya($jenis_perkara_id,$pihak4,$biaya4,'4',$biaya_pos4);
+      $field_biaya5=field_biaya($jenis_perkara_id,$pihak5,$biaya5,'5',$biaya_pos5);
+      $field_biaya6=field_biaya($jenis_perkara_id,$pihak6,$biaya6,'6',$biaya_pos6);
+      $field_biaya7=field_biaya($jenis_perkara_id,$pihak7,$biaya7,'7',$biaya_pos7);
+      $field_biaya8=field_biaya($jenis_perkara_id,$pihak8,$biaya8,'8',$biaya_pos8);
+      $field_biaya9=field_biaya($jenis_perkara_id,$pihak9,$biaya9,'9',$biaya_pos9);
+      $field_biaya10=field_biaya($jenis_perkara_id,$pihak10,$biaya10,'10',$biaya_pos10);
 
-      $biaya_panggilan1=biaya_panggilan($jenis_perkara_id,$pihak1,$biaya1,'1');
-      $biaya_panggilan2=biaya_panggilan($jenis_perkara_id,$pihak2,$biaya2,'2');
-      $biaya_panggilan3=biaya_panggilan($jenis_perkara_id,$pihak3,$biaya3,'3');
-      $biaya_panggilan4=biaya_panggilan($jenis_perkara_id,$pihak4,$biaya4,'4');
-      $biaya_panggilan5=biaya_panggilan($jenis_perkara_id,$pihak5,$biaya5,'5');
-      $biaya_panggilan6=biaya_panggilan($jenis_perkara_id,$pihak6,$biaya6,'6');
-      $biaya_panggilan7=biaya_panggilan($jenis_perkara_id,$pihak7,$biaya7,'7');
-      $biaya_panggilan8=biaya_panggilan($jenis_perkara_id,$pihak8,$biaya8,'8');
-      $biaya_panggilan9=biaya_panggilan($jenis_perkara_id,$pihak9,$biaya9,'9');
-      $biaya_panggilan10=biaya_panggilan($jenis_perkara_id,$pihak10,$biaya10,'10');
-
+      $biaya_panggilan1=biaya_panggilan($jenis_perkara_id,$pihak1,$biaya1,'1',$biaya_pos1);
+      $biaya_panggilan2=biaya_panggilan($jenis_perkara_id,$pihak2,$biaya2,'2',$biaya_pos2);
+      $biaya_panggilan3=biaya_panggilan($jenis_perkara_id,$pihak3,$biaya3,'3',$biaya_pos3);
+      $biaya_panggilan4=biaya_panggilan($jenis_perkara_id,$pihak4,$biaya4,'4',$biaya_pos4);
+      $biaya_panggilan5=biaya_panggilan($jenis_perkara_id,$pihak5,$biaya5,'5',$biaya_pos5);
+      $biaya_panggilan6=biaya_panggilan($jenis_perkara_id,$pihak6,$biaya6,'6',$biaya_pos6);
+      $biaya_panggilan7=biaya_panggilan($jenis_perkara_id,$pihak7,$biaya7,'7',$biaya_pos7);
+      $biaya_panggilan8=biaya_panggilan($jenis_perkara_id,$pihak8,$biaya8,'8',$biaya_pos8);
+      $biaya_panggilan9=biaya_panggilan($jenis_perkara_id,$pihak9,$biaya9,'9',$biaya_pos9);
+      $biaya_panggilan10=biaya_panggilan($jenis_perkara_id,$pihak10,$biaya10,'10',$biaya_pos10);
+      
       $panjar = $biaya_panggilan1 + $biaya_panggilan2 + $biaya_panggilan3 + $biaya_panggilan4 + $biaya_panggilan5 + $biaya_panggilan6 + $biaya_panggilan7 + $biaya_panggilan8 + $biaya_panggilan9 + $biaya_panggilan10 + 190000;
       $rp_panjar = rp($panjar);
 
@@ -105,7 +135,7 @@
           <div class="section-header">
             <h1>Taksiran Panjar Biaya Perkara Pengadilan Agama Kupang</h1>
           </div>
-            <form action="rekap_panjar.php" method="post">
+            <form action="rekap_panjar_save.php" method="post">
               <div class="row">
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
@@ -189,21 +219,3 @@
   <?php include('js.php');?> 
 </body>
 </html>
-
-<?php  
-  
-include("koneksi.php");  
-  
-if(isset($_POST['simpan']))  
-{  
-  $penyetor = $_POST['penyetor'];
-  $biaya = $_POST['biaya'];
-  $untuk = $_POST['untuk'];
-  $alur = $_POST['alur'];
-  $sql = "INSERT INTO skum (penyetor,biaya,untuk,alur) VALUES ('$penyetor','$biaya','$untuk','$alur')";
-  // echo $sql;
-  $query = mysqli_query($con,$sql);
-  echo "<script type='text/javascript'>alert('Data Tersimpan');</script>";
-  echo "<script type='text/javascript'>window.location.href='data_panjar.php'</script>";
-}  
-?>  

@@ -73,153 +73,294 @@
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak1">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 1</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya1">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi1" id="provinsi1">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten1" id="kabupaten1">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan1" id="kecamatan1">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan1" id="kelurahan1">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos1" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak2">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 2</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya2">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi2" id="provinsi2">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten2" id="kabupaten2">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan2" id="kecamatan2">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan2" id="kelurahan2">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos2" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak3">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 3</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya3">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi3" id="provinsi3">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten3" id="kabupaten3">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan3" id="kecamatan3">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan3" id="kelurahan3">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos3" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak4">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 4</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya4">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi4" id="provinsi4">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten4" id="kabupaten4">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan4" id="kecamatan4">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan4" id="kelurahan4">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos4" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak5">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 5</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya5">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi5" id="provinsi5">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten5" id="kabupaten5">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan5" id="kecamatan5">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan5" id="kelurahan5">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos5" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak6">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 6</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya6">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi6" id="provinsi6">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten6" id="kabupaten6">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan6" id="kecamatan6">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan6" id="kelurahan6">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos6" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak7">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 7</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya7">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi7" id="provinsi7">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten7" id="kabupaten7">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan7" id="kecamatan7">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan7" id="kelurahan7">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos7" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak8">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 8</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya8">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi8" id="provinsi8">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten8" id="kabupaten8">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan8" id="kecamatan8">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan8" id="kelurahan8">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos8" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak9">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 9</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya9">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi9" id="provinsi9">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten9" id="kabupaten9">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan9" id="kecamatan9">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan9" id="kelurahan9">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos9" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="pihak10">
-                            <option value="-" hidden>Pilih Jenis Pihak</option>
+                            <option value="-" hidden>Pilih Jenis Pihak 10</option>
                             <option value="P">Pemohon/Penggugat</option>
                             <option value="T">Termohon/Tergugat</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select class="form-control select2" name="biaya10">
-                            <option value="-" hidden>Pilih Lokasi</option>
-                            <?=getlokasi();?>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="provinsi10" id="provinsi10">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kabupaten10" id="kabupaten10">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kecamatan10" id="kecamatan10">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <select class="form-control select2" name="kelurahan10" id="kelurahan10">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input class="form-control" name="biaya_pos10" placeholder="Biaya Pos (Tabayyun)">
                           </select>
                         </div>
                       </div>
+                      
                     </div>
                   </div>
                     <button name="submit" id="submit" value="submit" type=submit class="btn btn-primary">TAKSIR PANJAR</button>
@@ -242,5 +383,6 @@
     </div>
   </div>
   <?php include('js.php');?>  
+  <?php include('getlokasi.php');?>  
 </body>
 </html>

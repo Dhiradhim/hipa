@@ -9,10 +9,37 @@ function getvalue_aps($value,$tabel,$where,$cond)
     return $text;
 }
 
+function kode_satker($kel=0)
+{
+    include('koneksi.php');
+    if ($kel==0){
+        $text="";
+    }
+    $sql = "SELECT satker_code FROM data_komdanas WHERE kel='$kel'";
+    $query = mysqli_query($con,$sql);
+    $row = mysqli_fetch_assoc($query);
+    $text = $row['satker_code'];
+    return $text;
+}
+
+function biaya($kel="")
+{
+    include('koneksi.php');
+    if ($kel==""){
+        $text="";
+    } else {
+    $sql = "SELECT nilai FROM data_komdanas WHERE kel='$kel'";
+    $query = mysqli_query($con,$sql);
+    $row = mysqli_fetch_assoc($query);
+    $text = $row['nilai'];
+    }
+    return $text;
+}
+
 function getlokasi()
 {
     include('koneksi.php');
-    $sql = "SELECT k1.id as id, k1.nama as kel, k2.nama as kec, k3.nama as kota, k1.biaya as biaya FROM kelurahan k1 left join kecamatan k2 on k1.id_kecamatan=k2.id left join kota k3 on k1.id_kota=k3.id";
+    $sql = "SELECT id,kabkota as kota,kec,kel FROM data_komdanas";
     $query = mysqli_query($con,$sql);
     $row = mysqli_fetch_assoc($query);
     do {
@@ -20,8 +47,7 @@ function getlokasi()
         $kel = $row['kel'];
         $kec = $row['kec'];
         $kota = $row['kota'];
-        $biaya = $row['biaya'];
-        $text .="<option value=$biaya>$id. Kel.$kel, Kec.$kec, $kota</option>";
+        $text .="<option value=$id>$id. Kel.$kel, Kec.$kec, $kota</option>";
     } while ($row = mysqli_fetch_assoc($query));
     return $text;
 }
@@ -60,14 +86,25 @@ function rp($angka){
     $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
     return $hasil_rupiah;
   }
+function biaya_pos($biaya_pos){
+    if($biaya_pos==""){
+        $biaya_pos=0;
+    } else {
+        $biaya_pos=$biaya_pos;
+    }
+    return $biaya_pos;
+  }
 
-function field_biaya($jenis_perkara_id,$pihak,$biaya,$urutan){
+function field_biaya($jenis_perkara_id,$pihak,$biaya,$urutan,$biaya_pos=0){
 if ($jenis_perkara_id==346){
     if($pihak=='-'){
     $text = '';
     } else if ($pihak=='P'){
     $nama='Penggugat';
     $panggil=4;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
@@ -75,6 +112,9 @@ if ($jenis_perkara_id==346){
     } else {
     $nama='Tergugat';
     $panggil=5;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
@@ -86,6 +126,9 @@ if ($jenis_perkara_id==346){
     } else if ($pihak=='P'){
     $nama='Pemohon '.$urutan;
     $panggil=3;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
@@ -96,6 +139,9 @@ if ($jenis_perkara_id==346){
     } else if ($pihak=='P'){
     $nama='Penggugat';
     $panggil=3;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
@@ -103,6 +149,9 @@ if ($jenis_perkara_id==346){
     } else {
     $nama='Tergugat';
     $panggil=4;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
@@ -121,17 +170,23 @@ if ($jenis_perkara_id==342 || $jenis_perkara_id==343 || $jenis_perkara_id==354 |
 return $alur;
 }
 
-function biaya_panggilan($jenis_perkara_id,$pihak,$biaya,$urutan){
+function biaya_panggilan($jenis_perkara_id,$pihak,$biaya,$urutan,$biaya_pos=0){
 if ($jenis_perkara_id==346){
     if($pihak=='-'){
     $biaya_tot = 0;
     } else if ($pihak=='P'){
     $nama='Penggugat';
     $panggil=4;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     } else {
     $nama='Tergugat';
     $panggil=5;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     }
 } else if ($jenis_perkara_id==342 || $jenis_perkara_id==343 || $jenis_perkara_id==354 || $jenis_perkara_id==357 || $jenis_perkara_id==359 || $jenis_perkara_id==362 || $jenis_perkara_id==363 || $jenis_perkara_id==364 || $jenis_perkara_id==365 || $jenis_perkara_id==371){
@@ -140,6 +195,9 @@ if ($jenis_perkara_id==346){
     } else if ($pihak=='P'){
     $nama='Pemohon '.$urutan;
     $panggil=3;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
 }} else {
     if($pihak=='-'){
@@ -147,10 +205,16 @@ if ($jenis_perkara_id==346){
     } else if ($pihak=='P'){
     $nama='Penggugat';
     $panggil=3;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     } else {
     $nama='Tergugat';
     $panggil=4;
+    if ($biaya_pos!==0){
+        $biaya=$biaya+$biaya_pos+20000;
+    } 
     $biaya_tot = $panggil*$biaya;
     }
 }

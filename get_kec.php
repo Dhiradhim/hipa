@@ -1,10 +1,12 @@
 <?php
 include('koneksi.php');
-$id_kota = $_GET['id_kota'];
-$sql = "SELECT * FROM kecamatan WHERE `id_kota` = '$id_kota'";
-$query = $mysqli->query($sql);
+$kabkota = $_GET['kabkota'];
+$sql = "SELECT DISTINCT kec FROM data_komdanas WHERE kabkota='$kabkota'";
+$query = mysqli_query($con,$sql);
+$row = mysqli_fetch_assoc($query);
 $data = array();
-while($row = $query->fetch_array(MYSQLI_ASSOC)){
-$data[] = array("id_kec" => $row['id'], "nama" => $row['nama']);
-}
-echo json_encode($data);?>
+do {
+$data[] = array("kec" => $row['kec']);
+} while($row = mysqli_fetch_assoc($query));
+echo json_encode($data);
+?>
