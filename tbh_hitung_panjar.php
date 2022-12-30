@@ -66,13 +66,13 @@
                         </div>
                         <div class="form-group col-md-4">
                           <label>Nama Penyetor</label>
-                          <input type="text" class="form-control" name="penyetor">
+                          <input type="text" class="form-control" name="penyetor" required>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <label>Biaya Panjar</label>
-                          <input type="text" class="form-control" id="rupiah" name="biaya">
+                          <input type="text" class="form-control" id="rupiah" name="biaya" required>
                         </div>
                         <div class="form-group col-md-4">
                           <label>Untuk: </label>
