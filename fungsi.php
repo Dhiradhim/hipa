@@ -71,7 +71,7 @@ function getperkara()
 function getperkarasipp()
 {
     include('koneksi.php');
-    $sql = "SELECT perkara_id, nomor_perkara FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2022' ORDER BY alur_perkara_id ASC, perkara_id ASC";
+    $sql = "SELECT perkara_id, nomor_perkara FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2023' ORDER BY alur_perkara_id ASC, perkara_id ASC";
     $query = mysqli_query($con_sipp,$sql);
     $row = mysqli_fetch_assoc($query);
     do {
