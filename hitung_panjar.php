@@ -59,14 +59,14 @@
                       <div class="row">
                         <div class="form-group col-md-6">
                           <label>Jenis Perkara</label>
-                          <select class="form-control select2" name="jenis_perkara_id">
+                          <select class="form-control select2" name="jenis_perkara_id" required>
                             <option value="-">Pilih Jenis Perkara</option>
                             <?=getperkara();?>
                           </select>
                         </div>
                         <div class="form-group col-md-4">
                           <label>Nama Penyetor</label>
-                          <input type="text" class="form-control" name="penyetor">
+                          <input type="text" class="form-control" name="penyetor" required>
                         </div>
                       </div>
                     <div class="section-title mt-0">Pihak</div>

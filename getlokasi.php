@@ -64,7 +64,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan1").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan1").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -132,7 +132,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan2").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan2").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -200,7 +200,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan3").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan3").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -268,7 +268,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan4").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan4").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -336,7 +336,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan5").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan5").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -404,7 +404,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan6").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan6").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -472,7 +472,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan7").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan7").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -540,7 +540,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan8").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan8").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -608,7 +608,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan9").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan9").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });
@@ -676,7 +676,7 @@ type: 'GET',
 dataType : 'json', 
 success : function(result){ 
 for(var i = 0; i < result.length; i++) 
-$("#kelurahan10").append('<option value="'+ result[i].kel +'">' + result[i].kel + '</option>'); 
+$("#kelurahan10").append('<option value="'+ result[i].id +'">' + result[i].kel + '</option>'); 
 } 
 });  
 });

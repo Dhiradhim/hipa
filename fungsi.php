@@ -9,7 +9,7 @@ function getvalue_aps($value,$tabel,$where,$cond)
     return $text;
 }
 
-function kode_satker($kel=0)
+function kode_satker($kel="")
 {
     include('koneksi.php');
     if ($kel==0){
@@ -22,13 +22,13 @@ function kode_satker($kel=0)
     return $text;
 }
 
-function biaya($kel="")
+function biaya($id="")
 {
     include('koneksi.php');
-    if ($kel==""){
+    if ($id==""){
         $text="";
     } else {
-    $sql = "SELECT nilai FROM data_komdanas WHERE kel='$kel'";
+    $sql = "SELECT nilai FROM data_komdanas WHERE id='$id'";
     $query = mysqli_query($con,$sql);
     $row = mysqli_fetch_assoc($query);
     $text = $row['nilai'];
