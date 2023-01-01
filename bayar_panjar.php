@@ -15,7 +15,7 @@ include("koneksi.php");
 
   $urutan_skum = $row_skum['COUNT(*)']+1;
   $urutan_skum1 = sprintf("%05d", $urutan_skum);
-  $no_skum = 'W23-A1-'.$alur_p.'-'.$urutan_skum1;
+  $no_skum = $kode_satker.'-'.$alur_p.'-'.$urutan_skum1;
 
   $sql_perkara = "SELECT COUNT(*) FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2023' AND alur_perkara_id='$alur'";
   $query_perkara = mysqli_query($con_sipp,$sql_perkara);

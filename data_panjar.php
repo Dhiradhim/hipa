@@ -102,7 +102,8 @@
                               </td>
                               <td width=10%>
                                 <?php if ($row['bayar']=='0'){ ?>
-                                  <a href="bayar_panjar.php?id=<?=$row['id'];?>&alur_p=<?=$row['alur']?>" target="_blank" class="btn btn-icon btn-primary" data-toggle="tooltip" data-placement="top" title="Konfirmasi Bayar"><i class="fa-solid fa-money-check-dollar"></i></a>
+                                  <a href="cetak_skum2.php?id=<?=$row['id'];?>" target="_blank" class="btn btn-icon btn-success"><i class="fa-solid fa-print" data-toggle="tooltip" data-placement="top" title="Cetak Form Bayar"></i></a>
+								  <a href="bayar_panjar.php?id=<?=$row['id'];?>&alur_p=<?=$row['alur']?>" class="btn btn-icon btn-primary" data-toggle="tooltip" data-placement="top" title="Konfirmasi Bayar"><i class="fa-solid fa-money-check-dollar"></i></a>
                                   <a href="hapus_skum.php?id=<?=$row['id'];?>" onClick="return confirm('Hapus Data ini?')" class="btn btn-icon btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa-solid fa-trash"></i></a>
                                 <?php } else {?>
                                   <a href="cetak_skum.php?id=<?=$row['id'];?>" target="_blank" class="btn btn-icon btn-success"><i class="fa-solid fa-print" data-toggle="tooltip" data-placement="top" title="Cetak SKUM"></i></a>

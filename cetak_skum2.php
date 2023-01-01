@@ -16,7 +16,7 @@
         foreach($row_skum as $key=>$value) {$$key=$value;}
 		$nm_kasir=getvalue_aps('value','keu_config','kd','nm_kasir');
 		$nip_kasir=getvalue_aps('value','keu_config','kd','nip_kasir');
-
+		$tanggal = date('Y-m-d');
         $tanggal_panjang=substr($tanggal,8,2).' '.$nm_bln[substr($tanggal,5,2)].' '.substr($tanggal,0,4);
         
 function Terbilang($x)
@@ -50,19 +50,19 @@ $ter_bi=Terbilang($biaya);
 		<td><span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>Pengadilan Agama Kupang</strong></span><br/>
 			<span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>Jl. Kejora, Kota Kupang</strong></span>
 		</td>
-		<td align='right'><span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>Nomor SKUM : <?php echo $no_skum; ?></strong></span>
+		<td align='right'><span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong></strong></span>
 		</td>
 	</tr>
 </table>				
 
 <p style="text-align: center;"><span style="font-size: x-large; font-family: arial,helvetica,sans-serif;"><strong><span style="text-decoration: underline;">
-	K W I T A N S I</span></strong></span><br/>
- <span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>Surat Kuasa Untuk Membayar (SKUM)</strong></span></p>
+	Taksiran Panjar Biaya Perkara</span></strong></span><br/>
+ <span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong></strong></span></p>
  <table width='100%'>
 	<tr>
 		<td><span style="font-size: medium; font-family: arial,helvetica,sans-serif;">Nomor Perkara</span></td>
 		<td>:</td>
-		<td><span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><?php echo $no_perkara; ?></span></td>
+		<td><span style="font-size: medium; font-family: arial,helvetica,sans-serif;">-</span></td>
 	</tr>
 	<tr>
 		<td><span style="font-size: medium; font-family: arial,helvetica,sans-serif;">a. Nama</span></td>
@@ -98,11 +98,5 @@ $ter_bi=Terbilang($biaya);
 	</tr>
 </table>
 
-<p><span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">Pembayaran ini dianggap sah apabila ada cap lunas dan tanda tangan dari kasir</span><br/>
-<span style="text-decoration: underline; font-size: x-small; font-family: arial,helvetica,sans-serif;">CATATAN :</span><br/>
-<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR I&nbsp;&nbsp;&nbsp; untuk Pemohon / Penggugat</span><br/>
-<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR II&nbsp;&nbsp; untuk kasir</span><br/>
-<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR III&nbsp; untuk dilampirkan dalam berkas</span><br/>
-<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR IV&nbsp; untuk dibawa ke bank</span>
 	</body>
 </html>
