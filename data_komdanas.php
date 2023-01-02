@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>DATA PANJAR</title>
+  <title>DATA KOMDANAS</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
         include('sidebar.php');
         include('koneksi.php');
 
-        $sql = "SELECT * FROM skum";
+        $sql = "SELECT * FROM data_komdanas";
         $query = mysqli_query($con,$sql);
         $row = mysqli_fetch_assoc($query);
         $no = 1;
@@ -52,7 +52,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Data Taksiran Panjar Pengadilan Agama Kupang</h1>
+            <h1>Data Biaya Panggilan Seluruh Indonesia</h1>
             
           </div>
 
@@ -62,7 +62,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Tabel Data Panjar</h4>
+                    <h4>Tabel Data Biaya Panggilan</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -70,14 +70,12 @@
                         <thead>                                 
                           <tr>
                             <th>No.</th>
-                            <th>No. SKUM</th>
-                            <th>Tanggal Bayar</th>
-                            <th>No. Perkara</th>
-                            <th>Nama Penyetor</th>
-                            <th>Taksiran Panjar Biaya</th>
-                            <th>Uraian</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Nama Satker</th>
+                            <th>Kode Satker</th>
+                            <th>Kota/Kab</th>
+                            <th>Kecamatan</th>
+                            <th>Kelurahan</th>
+                            <th>Biaya Panggilan</th>
                           </tr>
                         </thead>
                         <tbody>    
@@ -85,31 +83,12 @@
                             do { ?>
                               <tr>
                               <td><?=$no?></td>
-                              <td><?=$row['no_skum']?></td>
-                              <td><?=$row['tanggal']?></td>
-                              <td><?=$row['no_perkara']?></td>
-                              <td><?=$row['penyetor']?></td>
-                              <td><?=rp($row['biaya']);?></td>
-                              <td><?=$row['untuk']?></td>
-                              <td>
-                                <?php
-                                if ($row['bayar']=='0'){
-                                  echo '<div class="badge badge-warning">Belum Bayar</div>';
-                                } else {
-                                echo '<div class="badge badge-success">Sudah Bayar</div>';
-                                }
-                                ?>
-                              </td>
-                              <td width=10%>
-                                <?php if ($row['bayar']=='0'){ ?>
-                                  <a href="cetak_skum2.php?id=<?=$row['id'];?>" target="_blank" class="btn btn-icon btn-success"><i class="fa-solid fa-print" data-toggle="tooltip" data-placement="top" title="Cetak Form Bayar"></i></a>
-								  <a href="bayar_panjar.php?id=<?=$row['id'];?>&alur_p=<?=$row['alur']?>" class="btn btn-icon btn-primary" data-toggle="tooltip" data-placement="top" title="Konfirmasi Bayar"><i class="fa-solid fa-money-check-dollar"></i></a>
-                                  <a href="hapus_skum.php?id=<?=$row['id'];?>" onClick="return confirm('Hapus Data ini?')" class="btn btn-icon btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa-solid fa-trash"></i></a>
-                                <?php } else {?>
-                                  <a href="cetak_skum.php?id=<?=$row['id'];?>" target="_blank" class="btn btn-icon btn-success"><i class="fa-solid fa-print" data-toggle="tooltip" data-placement="top" title="Cetak SKUM"></i></a>
-                                  <a href="hapus_skum.php?id=<?=$row['id'];?>" onClick="return confirm('Hapus Data ini?')"  class="btn btn-icon btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa-solid fa-trash"></i></a>
-                                <?php } ?>
-                              </td>
+                              <td><?=$row['satker_name']?></td>
+                              <td><?=$row['satker_code']?></td>
+                              <td><?=$row['kabkota']?></td>
+                              <td><?=$row['kec']?></td>
+                              <td><?=$row['kel']?></td>
+                              <td><?=rp($row['nilai'])?></td>
                               </tr>
                             <?php
                             $no++;
