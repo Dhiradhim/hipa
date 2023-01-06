@@ -100,7 +100,7 @@
                                 }
                                 ?>
                               </td>
-                              <td width=10%>
+                              <td width=15%>
                                 <?php if ($row['bayar']=='0'){ ?>
                                   <a href="cetak_skum2.php?id=<?=$row['id'];?>" target="_blank" class="btn btn-icon btn-success"><i class="fa-solid fa-print" data-toggle="tooltip" data-placement="top" title="Cetak Form Bayar"></i></a>
 								  <a href="bayar_panjar.php?id=<?=$row['id'];?>&alur_p=<?=$row['alur']?>" class="btn btn-icon btn-primary" data-toggle="tooltip" data-placement="top" title="Konfirmasi Bayar"><i class="fa-solid fa-money-check-dollar"></i></a>

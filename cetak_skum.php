@@ -103,6 +103,8 @@ $ter_bi=Terbilang($biaya);
 <span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR I&nbsp;&nbsp;&nbsp; untuk Pemohon / Penggugat</span><br/>
 <span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR II&nbsp;&nbsp; untuk kasir</span><br/>
 <span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR III&nbsp; untuk dilampirkan dalam berkas</span><br/>
-<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR IV&nbsp; untuk dibawa ke bank</span>
+<span style="font-size: x-small; font-family: arial,helvetica,sans-serif;">LEMBAR IV&nbsp; untuk dibawa ke bank</span><br><br>
+<center>----------------------------------------------------------------------------------------------------------------------------------------
+
 	</body>
 </html>
