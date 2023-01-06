@@ -96,7 +96,9 @@ $ter_bi=Terbilang($biaya);
 			<span style="font-size: medium; font-family: arial,helvetica,sans-serif;"><strong>NIP.<?=$nip_kasir?></strong><strong></strong></span></p>
 		</td>
 	</tr>
-</table>
+</table><br><br><br><br>
+<center>----------------------------------------------------------------------------------------------------------------------------------------
+
 
 	</body>
 </html>
