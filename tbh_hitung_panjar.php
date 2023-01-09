@@ -79,9 +79,13 @@
                           <select class="form-control" name="untuk">
                             <option value="-" hidden>Pilih Jenis Pembayaran</option>
                             <option value="Panjar Biaya Perkara Tingkat Pertama">Panjar Biaya Perkara Tingkat Pertama</option>
+                            <option value="Panjar Biaya Perkara Tingkat Pertama">Panjar Biaya Eksekusi Tingkat Pertama</option>
                             <option value="Panjar Biaya Perkara Tingkat Pertama">Panjar Biaya Perkara Tingkat Banding</option>
                             <option value="Panjar Biaya Perkara Tingkat Pertama">Panjar Biaya Perkara Tingkat Kasasi</option>
                             <option value="Tambahan Panjar Biaya Perkara Tingkat Pertama">Tambahan Panjar Biaya Perkara Tingkat Pertama</option>
+                            <option value="Tambahan Panjar Biaya Perkara Tingkat Pertama">Tambahan Panjar Biaya Eksekusi Tingkat Pertama</option>
+                            <option value="Tambahan Panjar Biaya Perkara Tingkat Pertama">Tambahan Panjar Biaya Perkara Tingkat Banding</option>
+                            <option value="Tambahan Panjar Biaya Perkara Tingkat Pertama">Tambahan Panjar Biaya Perkara Tingkat Kasasi</option>
                           </select>
                         </div>
                       </div>

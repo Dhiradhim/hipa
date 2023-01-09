@@ -71,14 +71,30 @@ function getperkara()
 function getperkarasipp()
 {
     include('koneksi.php');
-    $sql = "SELECT perkara_id, nomor_perkara FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2023' OR LEFT(tanggal_pendaftaran,4)='2022' ORDER BY alur_perkara_id ASC, perkara_id DESC";
+    $sql = "SELECT nomor_perkara FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2023' OR LEFT(tanggal_pendaftaran,4)='2022' ORDER BY alur_perkara_id ASC, perkara_id DESC";
     $query = mysqli_query($con_sipp,$sql);
     $row = mysqli_fetch_assoc($query);
+    $text .="<option value='-' disabled>=== Perkara ===</option>";
     do {
-        $id = $row['id'];
         $nomor_perkara = $row['nomor_perkara'];
         $text .="<option value=$nomor_perkara>$nomor_perkara</option>";
     } while ($row = mysqli_fetch_assoc($query));
+    $text .="<option value='-' disabled>=== Perkara Eksekusi ===</option>";
+    $sql_eks = "SELECT nomor_register_eksekusi FROM perkara_eksekusi ORDER BY permohonan_eksekusi DESC";
+    $query_eks = mysqli_query($con_sipp,$sql_eks);
+    $row_eks = mysqli_fetch_assoc($query_eks);
+    do {
+        $nomor_register_eksekusi = $row_eks['nomor_register_eksekusi'];
+        $text .="<option value=$nomor_register_eksekusi>$nomor_register_eksekusi</option>";
+    } while ($row_eks = mysqli_fetch_assoc($query_eks));
+    $text .="<option value='-' disabled>=== Perkara Eksekusi Hak Tanggungan ===</option>";
+    $sql_eks2 = "SELECT eksekusi_nomor_perkara FROM perkara_eksekusi_ht ORDER BY eksekusi_nomor_perkara DESC";
+    $query_eks2 = mysqli_query($con_sipp,$sql_eks2);
+    $row_eks2 = mysqli_fetch_assoc($query_eks2);
+    do {
+        $eksekusi_nomor_perkara = $row_eks2['eksekusi_nomor_perkara'];
+        $text .="<option value=$eksekusi_nomor_perkara>$eksekusi_nomor_perkara</option>";
+    } while ($row_eks2 = mysqli_fetch_assoc($query_eks2));
     return $text;
 }
 
