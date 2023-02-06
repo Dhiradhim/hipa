@@ -43,7 +43,7 @@
         include('sidebar.php');
         include('koneksi.php');
 
-        $sql = "SELECT * FROM skum ORDER BY id DESC WHERE bayar='0'";
+        $sql = "SELECT * FROM skum WHERE bayar=0 ORDER BY id DESC ";
         $query = mysqli_query($con,$sql);
         $row = mysqli_fetch_assoc($query);
         $no = 1;
