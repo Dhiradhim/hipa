@@ -9,7 +9,7 @@ $d=json_decode($tarik, true);
 
 foreach($d as $r)
 {
-//get the employee details
+//get the details
 $satker_name = $r['satker_name'];
 $satker_code = $r['satker_code'];
 $prop = $r['prop'];
