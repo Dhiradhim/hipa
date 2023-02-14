@@ -27,9 +27,10 @@
       <li class="dropdown">
         <a href="data_panjar_sudah_bayar.php" class="nav-link"><i class="fas fa-columns"></i><span>Data Panjar Sudah Bayar</span></a>
       </li>
-      <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+      <!--<div class="mt-4 mb-4 p-3 hide-sidebar-mini">
       <a href="logout.php" class="btn btn-primary btn-lg btn-block btn-icon-split">
         <i class="fas fa-rocket"></i> LOGOUT
       </a>
-    </div>        </aside>
+    </div>-->        
+	</aside>
 </div>
