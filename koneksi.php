@@ -1,20 +1,20 @@
 <?php
 // DATABASE APLIKASI HIPA
 $servername = "localhost";
-$database = "hipa";
+$database = "skum";
 $username = "root";
 $password = "";
 $con = mysqli_connect($servername, $username, $password, $database);
 
 // DATABASE APLIKASI SIPP
-$servername1 = "103.168.132.51";
+$servername1 = "192.168.1.2";
 $database1 = "pakp";
 $username1 = "root";
 $password1 = "peradilan";
 $con_sipp = mysqli_connect($servername1, $username1, $password1, $database1);
 
 // DATABASE APLIKASI APS_BADILAG
-$servername2 = "103.168.132.51";
+$servername2 = "192.168.1.2";
 $database2 = "aps_badilag";
 $username2 = "root";
 $password2 = "peradilan";
