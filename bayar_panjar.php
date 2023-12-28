@@ -3,6 +3,7 @@
 include("koneksi.php");  
 
   $id = $_GET['id'];
+  $tahun = date("Y");  
   $alur_p = $_GET['alur_p'];
   if ($alur_p=='G'){
     $alur='15';
@@ -17,11 +18,11 @@ include("koneksi.php");
   $urutan_skum1 = sprintf("%05d", $urutan_skum);
   $no_skum = $kode_satker.'-'.$alur_p.'-'.$urutan_skum1;
 
-  $sql_perkara = "SELECT COUNT(*) FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='2023' AND alur_perkara_id='$alur'";
+  $sql_perkara = "SELECT COUNT(*) FROM perkara WHERE LEFT(tanggal_pendaftaran,4)='$tahun' AND alur_perkara_id='$alur'";
   $query_perkara = mysqli_query($con_sipp,$sql_perkara);
   $row_perkara = mysqli_fetch_assoc($query_perkara);
   $no = $row_perkara['COUNT(*)']+1;
-  $no_perkara = $no.'/'.'Pdt.'.$alur_p.'/'.'2023/PA.Kp';
+  $no_perkara = $no.'/'.'Pdt.'.$alur_p.'/'.$tahun.'/PA.Kp';
   $tanggal = date("Y-m-d");
   
   $sql_cek_no = "SELECT COUNT(*) FROM skum WHERE no_perkara='$no_perkara'";
