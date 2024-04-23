@@ -83,9 +83,9 @@ $ter_bi=Terbilang($biaya);
 <br/>
 <table width='100%'>
 	<tr >
-		<td width='70%'>&nbsp;
+		<td width='50%'>&nbsp;
 		</td>
-		<td width='30%' align='center'>
+		<td width='50%' align='center'>
 			<p><span style="font-size: medium; font-family: arial,helvetica,sans-serif;">Kupang, <?php echo $tanggal_panjang; ?></span><br/>
 			<span style="font-size: medium; font-family: arial,helvetica,sans-serif;">Kasir,</span></p>
 			<br/>
