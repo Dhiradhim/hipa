@@ -1,5 +1,48 @@
 
 
+# ===== Security Headers =====
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Aktifkan HSTS hanya jika situs sudah 100% HTTPS.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ===== Blokir akses file sensitif =====
+<FilesMatch "^(radius\.json|config\.php|config\.sample\.php|.*\.sql|.*\.log|composer\.(json|lock))$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Blokir file tersembunyi (mis. .git, .env, .well-known tetap diizinkan bila perlu)
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ===== Proteksi direktori =====
+# Cegah directory listing.
+Options -Indexes
+
+# Blokir akses ke folder database/sql.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Blokir akses langsung ke folder db/.
+  RewriteRule ^db/ - [F,L]
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php83” package as the default “PHP” programming language.
 <IfModule mime_module>

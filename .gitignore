@@ -1,0 +1,37 @@
+# ===== File kredensial / rahasia =====
+# File konfigurasi kredensial database (asli) - jangan commit.
+config.php
+.env
+.env.*
+!.env.example
+
+# File konfigurasi lain yang mungkin berisi rahasia.
+secrets.php
+credentials.php
+*.ini.bak
+
+# ===== Data & backup sensitif =====
+# Folder database / dump SQL.
+db/
+*.sql
+*.sql.gz
+
+# File log.
+*.log
+logs/
+
+# ===== File OS / editor =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ===== Dependensi & cache =====
+/vendor/
+/node_modules/
+composer.lock
+
+# ===== IDE =====
+.idea/
+.vscode/
