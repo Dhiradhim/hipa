@@ -41,7 +41,7 @@
 
     $("#kabupaten1").change(function() {
         var kabkota = $("#kabupaten1").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan1").html('');
         $("#kelurahan1").html('');
         $("#kecamatan1").append('<option value="">Pilih Kecamatan</option>');
@@ -59,7 +59,7 @@
 
     $("#kecamatan1").change(function() {
         var kec = $("#kecamatan1").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan1").html('');
         $("#kelurahan1").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -95,7 +95,7 @@
 
     $("#provinsi2").change(function() {
         var prop_name = $("#provinsi2").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten2").html('');
         $("#kecamatan2").html('');
         $("#kelurahan2").html('');
@@ -115,7 +115,7 @@
 
     $("#kabupaten2").change(function() {
         var kabkota = $("#kabupaten2").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan2").html('');
         $("#kelurahan2").html('');
         $("#kecamatan2").append('<option value="">Pilih Kecamatan</option>');
@@ -133,7 +133,7 @@
 
     $("#kecamatan2").change(function() {
         var kec = $("#kecamatan2").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan2").html('');
         $("#kelurahan2").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -169,7 +169,7 @@
 
     $("#provinsi3").change(function() {
         var prop_name = $("#provinsi3").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten3").html('');
         $("#kecamatan3").html('');
         $("#kelurahan3").html('');
@@ -189,7 +189,7 @@
 
     $("#kabupaten3").change(function() {
         var kabkota = $("#kabupaten3").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan3").html('');
         $("#kelurahan3").html('');
         $("#kecamatan3").append('<option value="">Pilih Kecamatan</option>');
@@ -207,7 +207,7 @@
 
     $("#kecamatan3").change(function() {
         var kec = $("#kecamatan3").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan3").html('');
         $("#kelurahan3").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -243,7 +243,7 @@
 
     $("#provinsi4").change(function() {
         var prop_name = $("#provinsi4").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten4").html('');
         $("#kecamatan4").html('');
         $("#kelurahan4").html('');
@@ -263,7 +263,7 @@
 
     $("#kabupaten4").change(function() {
         var kabkota = $("#kabupaten4").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan4").html('');
         $("#kelurahan4").html('');
         $("#kecamatan4").append('<option value="">Pilih Kecamatan</option>');
@@ -281,7 +281,7 @@
 
     $("#kecamatan4").change(function() {
         var kec = $("#kecamatan4").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan4").html('');
         $("#kelurahan4").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -317,7 +317,7 @@
 
     $("#provinsi5").change(function() {
         var prop_name = $("#provinsi5").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten5").html('');
         $("#kecamatan5").html('');
         $("#kelurahan5").html('');
@@ -337,7 +337,7 @@
 
     $("#kabupaten5").change(function() {
         var kabkota = $("#kabupaten5").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan5").html('');
         $("#kelurahan5").html('');
         $("#kecamatan5").append('<option value="">Pilih Kecamatan</option>');
@@ -355,7 +355,7 @@
 
     $("#kecamatan5").change(function() {
         var kec = $("#kecamatan5").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan5").html('');
         $("#kelurahan5").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -391,7 +391,7 @@
 
     $("#provinsi6").change(function() {
         var prop_name = $("#provinsi6").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten6").html('');
         $("#kecamatan6").html('');
         $("#kelurahan6").html('');
@@ -411,7 +411,7 @@
 
     $("#kabupaten6").change(function() {
         var kabkota = $("#kabupaten6").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan6").html('');
         $("#kelurahan6").html('');
         $("#kecamatan6").append('<option value="">Pilih Kecamatan</option>');
@@ -429,7 +429,7 @@
 
     $("#kecamatan6").change(function() {
         var kec = $("#kecamatan6").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan6").html('');
         $("#kelurahan6").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -465,7 +465,7 @@
 
     $("#provinsi7").change(function() {
         var prop_name = $("#provinsi7").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten7").html('');
         $("#kecamatan7").html('');
         $("#kelurahan7").html('');
@@ -485,7 +485,7 @@
 
     $("#kabupaten7").change(function() {
         var kabkota = $("#kabupaten7").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan7").html('');
         $("#kelurahan7").html('');
         $("#kecamatan7").append('<option value="">Pilih Kecamatan</option>');
@@ -503,7 +503,7 @@
 
     $("#kecamatan7").change(function() {
         var kec = $("#kecamatan7").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan7").html('');
         $("#kelurahan7").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -539,7 +539,7 @@
 
     $("#provinsi8").change(function() {
         var prop_name = $("#provinsi8").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten8").html('');
         $("#kecamatan8").html('');
         $("#kelurahan8").html('');
@@ -559,7 +559,7 @@
 
     $("#kabupaten8").change(function() {
         var kabkota = $("#kabupaten8").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan8").html('');
         $("#kelurahan8").html('');
         $("#kecamatan8").append('<option value="">Pilih Kecamatan</option>');
@@ -577,7 +577,7 @@
 
     $("#kecamatan8").change(function() {
         var kec = $("#kecamatan8").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan8").html('');
         $("#kelurahan8").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -613,7 +613,7 @@
 
     $("#provinsi9").change(function() {
         var prop_name = $("#provinsi9").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten9").html('');
         $("#kecamatan9").html('');
         $("#kelurahan9").html('');
@@ -633,7 +633,7 @@
 
     $("#kabupaten9").change(function() {
         var kabkota = $("#kabupaten9").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan9").html('');
         $("#kelurahan9").html('');
         $("#kecamatan9").append('<option value="">Pilih Kecamatan</option>');
@@ -651,7 +651,7 @@
 
     $("#kecamatan9").change(function() {
         var kec = $("#kecamatan9").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan9").html('');
         $("#kelurahan9").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
@@ -687,7 +687,7 @@
 
     $("#provinsi10").change(function() {
         var prop_name = $("#provinsi10").val();
-        var url = 'get_kota.php?prop_name=' + prop_name;
+        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
         $("#kabupaten10").html('');
         $("#kecamatan10").html('');
         $("#kelurahan10").html('');
@@ -707,7 +707,7 @@
 
     $("#kabupaten10").change(function() {
         var kabkota = $("#kabupaten10").val();
-        var url = 'get_kec.php?kabkota=' + kabkota;
+        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
         $("#kecamatan10").html('');
         $("#kelurahan10").html('');
         $("#kecamatan10").append('<option value="">Pilih Kecamatan</option>');
@@ -725,7 +725,7 @@
 
     $("#kecamatan10").change(function() {
         var kec = $("#kecamatan10").val();
-        var url = 'get_kel.php?kec=' + kec;
+        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
         $("#kelurahan10").html('');
         $("#kelurahan10").append('<option value="">Pilih Kelurahan</option>');
         $.ajax({
