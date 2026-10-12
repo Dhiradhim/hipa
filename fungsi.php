@@ -99,7 +99,7 @@ function getperkarasipp()
 }
 
 function rp($angka){
-    $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+    $hasil_rupiah = "Rp" . number_format($angka,2,',','.');
     return $hasil_rupiah;
   }
 function biaya_pos($biaya_pos){
@@ -124,7 +124,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
     } else {
     $nama='Tergugat';
     $panggil=5;
@@ -134,7 +134,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
     }
 } else if ($jenis_perkara_id==342 || $jenis_perkara_id==343 || $jenis_perkara_id==354 || $jenis_perkara_id==357 || $jenis_perkara_id==358 || $jenis_perkara_id==359 || $jenis_perkara_id==362 || $jenis_perkara_id==363 || $jenis_perkara_id==364 || $jenis_perkara_id==365 || $jenis_perkara_id==371){
     if($pihak=='-'){
@@ -148,7 +148,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";          
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";          
 } else {
     $nama='Termohon';
     $panggil=4;
@@ -158,7 +158,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
     }
 } else {
     if($pihak=='-'){
@@ -172,7 +172,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
     } else {
     $nama='Tergugat';
     $panggil=4;
@@ -182,7 +182,7 @@ if ($jenis_perkara_id==346){
     $biaya_tot = $panggil*$biaya;
     $biaya_total = rp($biaya_tot);
     $biaya = rp($biaya);
-    $text = "<div class='form-group'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
+    $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
     }
 }
 return $text;

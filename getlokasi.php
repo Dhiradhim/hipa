@@ -1,41 +1,24 @@
 <script type="text/javascript"> 
 
 $(document).ready(function() { 
-$("#provinsi1").append('<option value="">Pilih Provinsi</option>'); 
+$("#provinsi1").append('<option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>');
 $("#kabupaten1").html(''); 
 $("#kecamatan1").html(''); 
 $("#kelurahan1").html(''); 
-$("#kabupaten1").append('<option value="">Pilih Kabupaten</option>'); 
-$("#kecamatan1").append('<option value="">Pilih Kecamatan</option>'); 
-$("#kelurahan1").append('<option value="">Pilih Kelurahan</option>'); 
-url = 'get_prov.php'; 
-$.ajax({ url: url, 
-type: 'GET', 
-dataType: 'json', 
-success: function(result) { 
-for (var i = 0; i < result.length; i++) 
-$("#provinsi1").append('<option value="' + result[i].prop_name + '">' + result[i].prop_name + '</option>'); 
-} 
-}); 
+$("#kabupaten1").append('<option value="-">Pilih Kabupaten</option>'); 
+$("#kecamatan1").append('<option value="-">Pilih Kecamatan</option>'); 
+$("#kelurahan1").append('<option value="-">Pilih Kelurahan</option>'); 
 }); 
 
-$("#provinsi1").change(function(){ 
-var prop_name = $("#provinsi1").val(); 
-var url = 'get_kota.php?prop_name=' + prop_name; 
-$("#kabupaten1").html(''); 
+$(document).ready(function() { 
+$("#kabupaten1").append('<option value="Kota Kupang">Kota Kupang</option>');
+$("#kabupaten1").append('<option value="Kab. Kupang">Kab. Kupang</option>');
+$("#kabupaten1").append('<option value="Kab. Rote Ndao">Kab. Rote Ndao</option>');
+$("#kabupaten1").append('<option value="Kab. Sabu Raijua">Kab. Sabu Raijua</option>');
 $("#kecamatan1").html(''); 
-$("#kelurahan1").html(''); 
-$("#kabupaten1").append('<option value="">Pilih Kabupaten</option>'); 
+$("#kelurahan1").html('');
 $("#kecamatan1").append('<option value="">Pilih Kecamatan</option>'); 
-$("#kelurahan1").append('<option value="">Pilih Kelurahan</option>'); 
-$.ajax({ url : url, 
-type: 'GET', 
-dataType : 'json', 
-success : function(result){ 
-for(var i = 0; i < result.length; i++) 
-$("#kabupaten1").append('<option value="'+ result[i].kabkota +'">' + result[i].kabkota + '</option>'); 
-} 
-});  
+$("#kelurahan1").append('<option value="">Pilih Kelurahan</option>');  
 }); 
 
 $("#kabupaten1").change(function(){ 
