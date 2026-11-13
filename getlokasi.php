@@ -19,61 +19,6 @@
     }
 
     $(document).ready(function() {
-        $("#provinsi1").append('<option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>');
-        $("#kabupaten1").html('');
-        $("#kecamatan1").html('');
-        $("#kelurahan1").html('');
-        $("#kabupaten1").append('<option value="-">Pilih Kabupaten</option>');
-        $("#kecamatan1").append('<option value="-">Pilih Kecamatan</option>');
-        $("#kelurahan1").append('<option value="-">Pilih Kelurahan</option>');
-    });
-
-    $(document).ready(function() {
-        $("#kabupaten1").append('<option value="Kota Kupang">Kota Kupang</option>');
-        $("#kabupaten1").append('<option value="Kab. Kupang">Kab. Kupang</option>');
-        $("#kabupaten1").append('<option value="Kab. Rote Ndao">Kab. Rote Ndao</option>');
-        $("#kabupaten1").append('<option value="Kab. Sabu Raijua">Kab. Sabu Raijua</option>');
-        $("#kecamatan1").html('');
-        $("#kelurahan1").html('');
-        $("#kecamatan1").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan1").append('<option value="">Pilih Kelurahan</option>');
-    });
-
-    $("#kabupaten1").change(function() {
-        var kabkota = $("#kabupaten1").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan1").html('');
-        $("#kelurahan1").html('');
-        $("#kecamatan1").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan1").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan1").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan1").change(function() {
-        var kec = $("#kecamatan1").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan1").html('');
-        $("#kelurahan1").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan1").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
         $("#provinsi2").append('<option value="">Pilih Provinsi</option>');
         $("#kabupaten2").html('');
         $("#kecamatan2").html('');

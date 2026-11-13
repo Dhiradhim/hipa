@@ -36,8 +36,9 @@ include('fungsi.php');
 include('rajaongkir.php');
 
 // Ambil & validasi input POST agar aman dari tipe data tak terduga.
+// Domisili Pemohon/Penggugat tidak lagi diinput karena panggilan pihak 1
+// dilakukan via e-Court (biaya Rp0), sehingga hanya kelurahan pihak 2 dipakai.
 $jenis_perkara_id = isset($_POST['jenis_perkara_id']) ? (int) $_POST['jenis_perkara_id'] : 0;
-$kelurahan1       = isset($_POST['kelurahan1']) ? (int) $_POST['kelurahan1'] : 0;
 $kelurahan2       = isset($_POST['kelurahan2']) ? (int) $_POST['kelurahan2'] : 0;
 
 // Pihak Pemohon/Penggugat (pihak 1) dipanggil melalui e-Court (email terdaftar),

@@ -52,34 +52,6 @@ include('fungsi.php');
                   </div><br>
 
                   <div class="form-divider">
-                    Domisili Pihak Penggugat/Pemohon
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Provinsi</label>
-                      <select disabled class="form-control" name="provinsi1" id="provinsi1">
-                      </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Kota/Kabupaten</label>
-                      <select class="form-control" name="kabupaten1" id="kabupaten1">
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Kecamatan</label>
-                      <select class="form-control" name="kecamatan1" id="kecamatan1">
-                      </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Kelurahan</label>
-                      <select class="form-control" name="kelurahan1" id="kelurahan1">
-                      </select>
-                    </div>
-                  </div><br>
-
-                  <div class="form-divider">
                     Domisili Pihak Tergugat/Termohon
                   </div>
                   <div class="row">

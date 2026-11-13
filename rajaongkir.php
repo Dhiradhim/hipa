@@ -325,7 +325,13 @@ function rajaongkir_http($method, $path, $params = [])
     $errno  = curl_errno($ch);
     $error  = curl_error($ch);
     $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+
+    // curl_close() tidak berefek sejak PHP 8.0 dan deprecated di PHP 8.5.
+    // Cukup lepaskan handle-nya; PHP akan menutupnya otomatis.
+    if (PHP_VERSION_ID < 80000) {
+        curl_close($ch);
+    }
+    unset($ch);
 
     if ($body === false || $errno !== 0) {
         error_log('RajaOngkir cURL error: ' . $error);
