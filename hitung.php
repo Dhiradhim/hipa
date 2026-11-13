@@ -33,29 +33,46 @@
 <?php
 include('koneksi.php');
 include('fungsi.php');
+include('rajaongkir.php');
 
 // Ambil & validasi input POST agar aman dari tipe data tak terduga.
 $jenis_perkara_id = isset($_POST['jenis_perkara_id']) ? (int) $_POST['jenis_perkara_id'] : 0;
 $kelurahan1       = isset($_POST['kelurahan1']) ? (int) $_POST['kelurahan1'] : 0;
 $kelurahan2       = isset($_POST['kelurahan2']) ? (int) $_POST['kelurahan2'] : 0;
 
-$biaya_pos1 = 0;
-$biaya_pos2 = 0;
-
-$biaya1 = biaya($kelurahan1);
-$pihak1 = "P";
-$field_biaya1 = field_biaya($jenis_perkara_id, $pihak1, $biaya1, '1', $biaya_pos1);
-$biaya_panggilan1 = biaya_panggilan($jenis_perkara_id, $pihak1, $biaya1, '1', $biaya_pos1);
+// Pihak Pemohon/Penggugat (pihak 1) dipanggil melalui e-Court (email terdaftar),
+// sehingga biaya panggilan = Rp0.
+$biaya_panggilan1 = 0;
+$field_biaya1 = "<div class='form-group col-6'><label>Panggilan Pemohon/Penggugat (e-Court)</label><input type='text' class='form-control' readonly value='" . rp(0) . "'></div>";
 
 $alur = alur($jenis_perkara_id);
 
+// Pihak Termohon/Tergugat (pihak 2) dipanggil via POS Indonesia.
+// Ongkos kirim dihitung RajaOngkir dari Kota Kupang ke kelurahan tujuan.
+$biaya_pos2 = 0;
+$ongkir_info = '';
 
 if ($kelurahan2 == 0) {
-  $field_biaya2 = "<div class='form-group col-6'><label>Panggilan Tergugat/Termohon</label><input type='text' class='form-control' readonly value='Rp0.00'></div>";
+  $field_biaya2 = "<div class='form-group col-6'><label>Panggilan Tergugat/Termohon</label><input type='text' class='form-control' readonly value='" . rp(0) . "'></div>";
   $biaya_panggilan2 = 0;
 } else {
-  $biaya2 = biaya($kelurahan2);
   $pihak2 = "T";
+
+  // Ongkos kirim POS Indonesia (RajaOngkir) dari Kota Kupang ke kelurahan tujuan.
+  // Bila tersedia, ongkir MENGGANTIKAN estimasi radius (data_komdanas.nilai)
+  // sebagai biaya per panggilan. Bila tidak tersedia, fallback ke nilai radius.
+  $ongkir = rajaongkir_biaya_kirim($kelurahan2);
+
+  if ($ongkir > 0) {
+    $biaya2     = $ongkir;
+    $biaya_pos2 = 0;
+    $ongkir_info = "<div class='form-group col-6'><label>Ongkos Kirim POS (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='" . rp($ongkir) . "'></div>";
+  } else {
+    $biaya2     = biaya($kelurahan2);
+    $biaya_pos2 = 0;
+    $ongkir_info = "<div class='form-group col-6'><label>Ongkos Kirim POS (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='Tidak tersedia (memakai estimasi radius)'></div>";
+  }
+
   $field_biaya2 = field_biaya($jenis_perkara_id, $pihak2, $biaya2, '2', $biaya_pos2);
   $biaya_panggilan2 = biaya_panggilan($jenis_perkara_id, $pihak2, $biaya2, '2', $biaya_pos2);
 }
@@ -122,6 +139,11 @@ if ($stmt !== false) {
                     <?= $field_biaya1; ?>
                     <?= $field_biaya2; ?>
                   </div>
+                  <?php if ($ongkir_info !== '') : ?>
+                    <div class="row">
+                      <?= $ongkir_info; ?>
+                    </div>
+                  <?php endif; ?>
                   <div class="row">
                     <div class="form-group col-6">
                       <label>Redaksi</label>
@@ -152,7 +174,8 @@ if ($stmt !== false) {
                   </div>
                   <div class="row">
                     <div class="form-group col-12">
-                      <label>* Biaya diatas belum termasuk biaya pengiriman POS jika pihak yang berperkara berada diluar wilayah yurisdiksi Pengadilan Agama Kupang</label>
+                      <label>* Panggilan kepada Pemohon/Penggugat dikirim melalui e-Court (email terdaftar) sehingga biaya panggilan Rp0.</label>
+                      <label>* Panggilan kepada Termohon/Tergugat dikirim melalui POS Indonesia. Ongkos kirim dihitung otomatis dari Kota Kupang ke kelurahan tujuan.</label>
                       <label>* Untuk mendapatkan biaya yang lebih murah dapat berperkara secara online melalui e-Court. Info lebih lanjut hubungi Whatsapp PTSP PA Kupang (0811 3810 0104)</label>
                       <button class="btn btn-warning" onclick="window.location.href='index.php'" type="button">Kembali ke Halaman Utama</button>
                     </div>

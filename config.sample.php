@@ -12,4 +12,17 @@ return [
     // Buat token acak, contoh: php -r "echo bin2hex(random_bytes(32));"
     // Kosongkan untuk memaksa sinkronisasi hanya via CLI.
     'sync_token' => 'ganti_dengan_token_acak_panjang',
+
+    // ===== Integrasi RajaOngkir (Komerce) =====
+    // Dapatkan API key di https://rajaongkir.com (dashboard Komerce).
+    // Kosongkan untuk menonaktifkan perhitungan ongkos kirim POS
+    // (aplikasi akan memakai nilai radius statis sebagai fallback).
+    'rajaongkir_api_key'  => 'ganti_dengan_api_key_rajaongkir',
+    'rajaongkir_base_url' => 'https://rajaongkir.komerce.id/api/v1',
+    // ID destinasi asal (Kota Kupang). Biarkan 0 agar dideteksi otomatis.
+    'rajaongkir_origin'   => 0,
+    // Berat paket (gram) yang dipakai untuk menghitung ongkos kirim.
+    'rajaongkir_weight'   => 1000,
+    // Kurir yang dipakai (pos = POS Indonesia).
+    'rajaongkir_courier'  => 'pos',
 ];

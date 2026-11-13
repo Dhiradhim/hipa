@@ -296,6 +296,13 @@ function biaya_panggilan($jenis_perkara_id, $pihak, $biaya, $urutan, $biaya_pos 
                 $biaya = $biaya + $biaya_pos + 20000;
             }
             $biaya_tot = $panggil * $biaya;
+        } else {
+            $nama = 'Termohon';
+            $panggil = 4;
+            if ($biaya_pos !== 0) {
+                $biaya = $biaya + $biaya_pos + 20000;
+            }
+            $biaya_tot = $panggil * $biaya;
         }
     } else {
         if ($pihak == '-') {
