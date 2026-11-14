@@ -194,7 +194,7 @@ function field_biaya($jenis_perkara_id, $pihak, $biaya, $urutan, $biaya_pos = 0)
             $biaya = rp($biaya);
             $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
         } else {
-            $nama = 'Tergugat';
+            $nama = 'Tergugat ' . $urutan;
             $panggil = 5;
             if ($biaya_pos !== 0) {
                 $biaya = $biaya + $biaya_pos + 20000;
@@ -218,7 +218,7 @@ function field_biaya($jenis_perkara_id, $pihak, $biaya, $urutan, $biaya_pos = 0)
             $biaya = rp($biaya);
             $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
         } else {
-            $nama = 'Termohon';
+            $nama = 'Termohon ' . $urutan;
             $panggil = 4;
             if ($biaya_pos !== 0) {
                 $biaya = $biaya + $biaya_pos + 20000;
@@ -242,7 +242,7 @@ function field_biaya($jenis_perkara_id, $pihak, $biaya, $urutan, $biaya_pos = 0)
             $biaya = rp($biaya);
             $text = "<div class='form-group col-6'><label>Panggilan $nama ($panggil X $biaya)</label><input type='text' class='form-control' readonly value='$biaya_total'></div>";
         } else {
-            $nama = 'Tergugat';
+            $nama = 'Tergugat ' . $urutan;
             $panggil = 4;
             if ($biaya_pos !== 0) {
                 $biaya = $biaya + $biaya_pos + 20000;

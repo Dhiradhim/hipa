@@ -49,34 +49,20 @@ include('fungsi.php');
                         <?= getperkara(); ?>
                       </select>
                     </div>
+                    <div class="form-group col-6">
+                      <label>Jumlah Penggugat</label>
+                      <input type="number" class="form-control" name="jumlah_penggugat" min="1" value="1" required>
+                    </div>
                   </div><br>
 
                   <div class="form-divider">
                     Domisili Pihak Tergugat/Termohon
                   </div>
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Provinsi</label>
-                      <select class="form-control" name="provinsi2" id="provinsi2">
-                      </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Kota/Kabupaten</label>
-                      <select class="form-control" name="kabupaten2" id="kabupaten2">
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-6">
-                      <label>Kecamatan</label>
-                      <select class="form-control" name="kecamatan2" id="kecamatan2">
-                      </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Kelurahan</label>
-                      <select class="form-control" name="kelurahan2" id="kelurahan2">
-                      </select>
-                    </div>
+                  <div id="tergugat-container"></div>
+                  <div class="form-group">
+                    <button type="button" id="tambah-tergugat" class="btn btn-success btn-sm">
+                      + Tambah Tergugat
+                    </button>
                   </div>
 
                   <div class="form-group">

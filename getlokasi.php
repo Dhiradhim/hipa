@@ -18,669 +18,158 @@
         });
     }
 
-    $(document).ready(function() {
-        $("#provinsi2").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten2").html('');
-        $("#kecamatan2").html('');
-        $("#kelurahan2").html('');
-        $("#kabupaten2").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan2").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan2").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
+    // Muat daftar provinsi ke sebuah <select>.
+    function loadProvinsi($sel) {
+        $sel.html('<option value="">Pilih Provinsi</option>');
         $.ajax({
-            url: url,
+            url: 'get_prov.php',
             type: 'GET',
             dataType: 'json',
             success: function(result) {
                 for (var i = 0; i < result.length; i++)
-                    $("#provinsi2").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
+                    $sel.append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
+            }
+        });
+    }
+
+    // Inisialisasi satu blok domisili (provinsi/kabupaten/kecamatan/kelurahan).
+    function initLokasi($item) {
+        var $prov = $item.find('.lokasi-provinsi');
+        var $kab = $item.find('.lokasi-kabupaten');
+        var $kec = $item.find('.lokasi-kecamatan');
+        var $kel = $item.find('.lokasi-kelurahan');
+
+        $kab.html('<option value="">Pilih Kabupaten</option>');
+        $kec.html('<option value="">Pilih Kecamatan</option>');
+        $kel.html('<option value="">Pilih Kelurahan</option>');
+
+        loadProvinsi($prov);
+    }
+
+    // Handler terdelegasi: berlaku untuk semua blok domisili, termasuk yang ditambah dinamis.
+    $(document).on('change', '.lokasi-provinsi', function() {
+        var $item = $(this).closest('.tergugat-item');
+        var prop_name = $(this).val();
+        var $kab = $item.find('.lokasi-kabupaten');
+        var $kec = $item.find('.lokasi-kecamatan');
+        var $kel = $item.find('.lokasi-kelurahan');
+
+        $kab.html('<option value="">Pilih Kabupaten</option>');
+        $kec.html('<option value="">Pilih Kecamatan</option>');
+        $kel.html('<option value="">Pilih Kelurahan</option>');
+
+        $.ajax({
+            url: 'get_kota.php?prop_name=' + encodeURIComponent(prop_name),
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                for (var i = 0; i < result.length; i++)
+                    $kab.append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
             }
         });
     });
 
-    $("#provinsi2").change(function() {
-        var prop_name = $("#provinsi2").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten2").html('');
-        $("#kecamatan2").html('');
-        $("#kelurahan2").html('');
-        $("#kabupaten2").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan2").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan2").append('<option value="">Pilih Kelurahan</option>');
+    $(document).on('change', '.lokasi-kabupaten', function() {
+        var $item = $(this).closest('.tergugat-item');
+        var kabkota = $(this).val();
+        var $kec = $item.find('.lokasi-kecamatan');
+        var $kel = $item.find('.lokasi-kelurahan');
+
+        $kec.html('<option value="">Pilih Kecamatan</option>');
+        $kel.html('<option value="">Pilih Kelurahan</option>');
+
         $.ajax({
-            url: url,
+            url: 'get_kec.php?kabkota=' + encodeURIComponent(kabkota),
             type: 'GET',
             dataType: 'json',
             success: function(result) {
                 for (var i = 0; i < result.length; i++)
-                    $("#kabupaten2").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
+                    $kec.append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
             }
         });
     });
 
-    $("#kabupaten2").change(function() {
-        var kabkota = $("#kabupaten2").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan2").html('');
-        $("#kelurahan2").html('');
-        $("#kecamatan2").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan2").append('<option value="">Pilih Kelurahan</option>');
+    $(document).on('change', '.lokasi-kecamatan', function() {
+        var $item = $(this).closest('.tergugat-item');
+        var kec = $(this).val();
+        var $kel = $item.find('.lokasi-kelurahan');
+
+        $kel.html('<option value="">Pilih Kelurahan</option>');
+
         $.ajax({
-            url: url,
+            url: 'get_kel.php?kec=' + encodeURIComponent(kec),
             type: 'GET',
             dataType: 'json',
             success: function(result) {
                 for (var i = 0; i < result.length; i++)
-                    $("#kecamatan2").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
+                    $kel.append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
             }
         });
     });
 
-    $("#kecamatan2").change(function() {
-        var kec = $("#kecamatan2").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan2").html('');
-        $("#kelurahan2").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan2").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
+    // ===== Fitur tambah/hapus tergugat (hanya aktif di halaman form) =====
+    var tergugatCount = 0;
 
-    $(document).ready(function() {
-        $("#provinsi3").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten3").html('');
-        $("#kecamatan3").html('');
-        $("#kelurahan3").html('');
-        $("#kabupaten3").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan3").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan3").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi3").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
+    // Perbarui label judul tiap blok tergugat menjadi "Tergugat 1", "Tergugat 2", dst.
+    function renumberTergugat() {
+        $('#tergugat-container .tergugat-item').each(function(i) {
+            $(this).find('.tergugat-title').text('Tergugat ' + (i + 1));
         });
-    });
+    }
 
-    $("#provinsi3").change(function() {
-        var prop_name = $("#provinsi3").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten3").html('');
-        $("#kecamatan3").html('');
-        $("#kelurahan3").html('');
-        $("#kabupaten3").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan3").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan3").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten3").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
+    function buatTergugat() {
+        tergugatCount++;
+        var html =
+            '<div class="tergugat-item" data-index="' + tergugatCount + '">' +
+            '  <div class="form-divider tergugat-title"></div>' +
+            '  <div class="row">' +
+            '    <div class="form-group col-6">' +
+            '      <label>Provinsi</label>' +
+            '      <select class="form-control lokasi-provinsi" name="provinsi[]"></select>' +
+            '    </div>' +
+            '    <div class="form-group col-6">' +
+            '      <label>Kota/Kabupaten</label>' +
+            '      <select class="form-control lokasi-kabupaten" name="kabupaten[]"></select>' +
+            '    </div>' +
+            '  </div>' +
+            '  <div class="row">' +
+            '    <div class="form-group col-6">' +
+            '      <label>Kecamatan</label>' +
+            '      <select class="form-control lokasi-kecamatan" name="kecamatan[]"></select>' +
+            '    </div>' +
+            '    <div class="form-group col-6">' +
+            '      <label>Kelurahan</label>' +
+            '      <select class="form-control lokasi-kelurahan" name="kelurahan[]" required></select>' +
+            '    </div>' +
+            '  </div>' +
+            '  <div class="form-group">' +
+            '    <button type="button" class="btn btn-danger btn-sm hapus-tergugat">Hapus Tergugat</button>' +
+            '  </div>' +
+            '  <hr>' +
+            '</div>';
 
-    $("#kabupaten3").change(function() {
-        var kabkota = $("#kabupaten3").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan3").html('');
-        $("#kelurahan3").html('');
-        $("#kecamatan3").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan3").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan3").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan3").change(function() {
-        var kec = $("#kecamatan3").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan3").html('');
-        $("#kelurahan3").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan3").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
+        var $item = $(html);
+        $('#tergugat-container').append($item);
+        initLokasi($item);
+        renumberTergugat();
+    }
 
     $(document).ready(function() {
-        $("#provinsi4").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten4").html('');
-        $("#kecamatan4").html('');
-        $("#kelurahan4").html('');
-        $("#kabupaten4").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan4").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan4").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi4").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
+        if ($('#tergugat-container').length) {
+            // Tergugat pertama otomatis ditampilkan.
+            buatTergugat();
 
-    $("#provinsi4").change(function() {
-        var prop_name = $("#provinsi4").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten4").html('');
-        $("#kecamatan4").html('');
-        $("#kelurahan4").html('');
-        $("#kabupaten4").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan4").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan4").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten4").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
+            $('#tambah-tergugat').on('click', function() {
+                buatTergugat();
+            });
 
-    $("#kabupaten4").change(function() {
-        var kabkota = $("#kabupaten4").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan4").html('');
-        $("#kelurahan4").html('');
-        $("#kecamatan4").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan4").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan4").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan4").change(function() {
-        var kec = $("#kecamatan4").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan4").html('');
-        $("#kelurahan4").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan4").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi5").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten5").html('');
-        $("#kecamatan5").html('');
-        $("#kelurahan5").html('');
-        $("#kabupaten5").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan5").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan5").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi5").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi5").change(function() {
-        var prop_name = $("#provinsi5").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten5").html('');
-        $("#kecamatan5").html('');
-        $("#kelurahan5").html('');
-        $("#kabupaten5").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan5").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan5").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten5").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten5").change(function() {
-        var kabkota = $("#kabupaten5").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan5").html('');
-        $("#kelurahan5").html('');
-        $("#kecamatan5").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan5").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan5").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan5").change(function() {
-        var kec = $("#kecamatan5").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan5").html('');
-        $("#kelurahan5").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan5").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi6").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten6").html('');
-        $("#kecamatan6").html('');
-        $("#kelurahan6").html('');
-        $("#kabupaten6").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan6").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan6").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi6").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi6").change(function() {
-        var prop_name = $("#provinsi6").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten6").html('');
-        $("#kecamatan6").html('');
-        $("#kelurahan6").html('');
-        $("#kabupaten6").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan6").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan6").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten6").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten6").change(function() {
-        var kabkota = $("#kabupaten6").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan6").html('');
-        $("#kelurahan6").html('');
-        $("#kecamatan6").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan6").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan6").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan6").change(function() {
-        var kec = $("#kecamatan6").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan6").html('');
-        $("#kelurahan6").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan6").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi7").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten7").html('');
-        $("#kecamatan7").html('');
-        $("#kelurahan7").html('');
-        $("#kabupaten7").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan7").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan7").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi7").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi7").change(function() {
-        var prop_name = $("#provinsi7").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten7").html('');
-        $("#kecamatan7").html('');
-        $("#kelurahan7").html('');
-        $("#kabupaten7").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan7").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan7").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten7").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten7").change(function() {
-        var kabkota = $("#kabupaten7").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan7").html('');
-        $("#kelurahan7").html('');
-        $("#kecamatan7").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan7").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan7").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan7").change(function() {
-        var kec = $("#kecamatan7").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan7").html('');
-        $("#kelurahan7").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan7").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi8").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten8").html('');
-        $("#kecamatan8").html('');
-        $("#kelurahan8").html('');
-        $("#kabupaten8").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan8").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan8").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi8").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi8").change(function() {
-        var prop_name = $("#provinsi8").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten8").html('');
-        $("#kecamatan8").html('');
-        $("#kelurahan8").html('');
-        $("#kabupaten8").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan8").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan8").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten8").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten8").change(function() {
-        var kabkota = $("#kabupaten8").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan8").html('');
-        $("#kelurahan8").html('');
-        $("#kecamatan8").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan8").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan8").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan8").change(function() {
-        var kec = $("#kecamatan8").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan8").html('');
-        $("#kelurahan8").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan8").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi9").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten9").html('');
-        $("#kecamatan9").html('');
-        $("#kelurahan9").html('');
-        $("#kabupaten9").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan9").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan9").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi9").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi9").change(function() {
-        var prop_name = $("#provinsi9").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten9").html('');
-        $("#kecamatan9").html('');
-        $("#kelurahan9").html('');
-        $("#kabupaten9").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan9").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan9").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten9").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten9").change(function() {
-        var kabkota = $("#kabupaten9").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan9").html('');
-        $("#kelurahan9").html('');
-        $("#kecamatan9").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan9").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan9").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan9").change(function() {
-        var kec = $("#kecamatan9").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan9").html('');
-        $("#kelurahan9").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan9").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#provinsi10").append('<option value="">Pilih Provinsi</option>');
-        $("#kabupaten10").html('');
-        $("#kecamatan10").html('');
-        $("#kelurahan10").html('');
-        $("#kabupaten10").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan10").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan10").append('<option value="">Pilih Kelurahan</option>');
-        url = 'get_prov.php';
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#provinsi10").append('<option value="' + esc(result[i].prop_name) + '">' + esc(result[i].prop_name) + '</option>');
-            }
-        });
-    });
-
-    $("#provinsi10").change(function() {
-        var prop_name = $("#provinsi10").val();
-        var url = 'get_kota.php?prop_name=' + encodeURIComponent(prop_name);
-        $("#kabupaten10").html('');
-        $("#kecamatan10").html('');
-        $("#kelurahan10").html('');
-        $("#kabupaten10").append('<option value="">Pilih Kabupaten</option>');
-        $("#kecamatan10").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan10").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kabupaten10").append('<option value="' + esc(result[i].kabkota) + '">' + esc(result[i].kabkota) + '</option>');
-            }
-        });
-    });
-
-    $("#kabupaten10").change(function() {
-        var kabkota = $("#kabupaten10").val();
-        var url = 'get_kec.php?kabkota=' + encodeURIComponent(kabkota);
-        $("#kecamatan10").html('');
-        $("#kelurahan10").html('');
-        $("#kecamatan10").append('<option value="">Pilih Kecamatan</option>');
-        $("#kelurahan10").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kecamatan10").append('<option value="' + esc(result[i].kec) + '">' + esc(result[i].kec) + '</option>');
-            }
-        });
-    });
-
-    $("#kecamatan10").change(function() {
-        var kec = $("#kecamatan10").val();
-        var url = 'get_kel.php?kec=' + encodeURIComponent(kec);
-        $("#kelurahan10").html('');
-        $("#kelurahan10").append('<option value="">Pilih Kelurahan</option>');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(result) {
-                for (var i = 0; i < result.length; i++)
-                    $("#kelurahan10").append('<option value="' + esc(result[i].id) + '">' + esc(result[i].kel) + '</option>');
-            }
-        });
+            $(document).on('click', '.hapus-tergugat', function() {
+                // Minimal harus ada satu tergugat.
+                if ($('#tergugat-container .tergugat-item').length > 1) {
+                    $(this).closest('.tergugat-item').remove();
+                    renumberTergugat();
+                }
+            });
+        }
     });
 </script>

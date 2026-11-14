@@ -39,7 +39,21 @@ include('rajaongkir.php');
 // Domisili Pemohon/Penggugat tidak lagi diinput karena panggilan pihak 1
 // dilakukan via e-Court (biaya Rp0), sehingga hanya kelurahan pihak 2 dipakai.
 $jenis_perkara_id = isset($_POST['jenis_perkara_id']) ? (int) $_POST['jenis_perkara_id'] : 0;
-$kelurahan2       = isset($_POST['kelurahan2']) ? (int) $_POST['kelurahan2'] : 0;
+$jumlah_penggugat = isset($_POST['jumlah_penggugat']) ? (int) $_POST['jumlah_penggugat'] : 1;
+if ($jumlah_penggugat < 1) {
+  $jumlah_penggugat = 1;
+}
+
+// Kumpulkan semua kelurahan tergugat/termohon yang diisi (bisa lebih dari satu).
+$kelurahan_list = array();
+if (isset($_POST['kelurahan']) && is_array($_POST['kelurahan'])) {
+  foreach ($_POST['kelurahan'] as $kel) {
+    $kel_int = (int) $kel;
+    if ($kel_int > 0) {
+      $kelurahan_list[] = $kel_int;
+    }
+  }
+}
 
 // Pihak Pemohon/Penggugat (pihak 1) dipanggil melalui e-Court (email terdaftar),
 // sehingga biaya panggilan = Rp0.
@@ -48,34 +62,41 @@ $field_biaya1 = "<div class='form-group col-6'><label>Panggilan Pemohon/Pengguga
 
 $alur = alur($jenis_perkara_id);
 
-// Pihak Termohon/Tergugat (pihak 2) dipanggil via POS Indonesia.
-// Ongkos kirim dihitung RajaOngkir dari Kota Kupang ke kelurahan tujuan.
+// Pihak Termohon/Tergugat (pihak 2 dst) dipanggil via POS Indonesia.
+// Ongkos kirim dihitung RajaOngkir dari Kota Kupang ke kelurahan tujuan masing-masing.
 $biaya_pos2 = 0;
 $ongkir_info = '';
+$field_biaya2 = '';
+$biaya_panggilan2 = 0;
 
-if ($kelurahan2 == 0) {
+if (count($kelurahan_list) == 0) {
   $field_biaya2 = "<div class='form-group col-6'><label>Panggilan Tergugat/Termohon</label><input type='text' class='form-control' readonly value='" . rp(0) . "'></div>";
-  $biaya_panggilan2 = 0;
 } else {
   $pihak2 = "T";
+  $no = 0;
 
-  // Ongkos kirim POS Indonesia (RajaOngkir) dari Kota Kupang ke kelurahan tujuan.
-  // Bila tersedia, ongkir MENGGANTIKAN estimasi radius (data_komdanas.nilai)
-  // sebagai biaya per panggilan. Bila tidak tersedia, fallback ke nilai radius.
-  $ongkir = rajaongkir_biaya_kirim($kelurahan2);
+  foreach ($kelurahan_list as $kelurahan2) {
+    $no++;
+    $urutan = (string) $no; // nomor urut tergugat (1, 2, 3, ...)
 
-  if ($ongkir > 0) {
-    $biaya2     = $ongkir;
-    $biaya_pos2 = 0;
-    $ongkir_info = "<div class='form-group col-6'><label>Ongkos Kirim POS (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='" . rp($ongkir) . "'></div>";
-  } else {
-    $biaya2     = biaya($kelurahan2);
-    $biaya_pos2 = 0;
-    $ongkir_info = "<div class='form-group col-6'><label>Ongkos Kirim POS (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='Tidak tersedia (memakai estimasi radius)'></div>";
+    // Ongkos kirim POS Indonesia (RajaOngkir) dari Kota Kupang ke kelurahan tujuan.
+    // Bila tersedia, ongkir MENGGANTIKAN estimasi radius (data_komdanas.nilai)
+    // sebagai biaya per panggilan. Bila tidak tersedia, fallback ke nilai radius.
+    $ongkir = rajaongkir_biaya_kirim($kelurahan2);
+
+    if ($ongkir > 0) {
+      $biaya2     = $ongkir;
+      $biaya_pos2 = 0;
+      $ongkir_info .= "<div class='form-group col-6'><label>Ongkos Kirim POS Tergugat $no (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='" . rp($ongkir) . "'></div>";
+    } else {
+      $biaya2     = biaya($kelurahan2);
+      $biaya_pos2 = 0;
+      $ongkir_info .= "<div class='form-group col-6'><label>Ongkos Kirim POS Tergugat $no (Kota Kupang &rarr; Tujuan)</label><input type='text' class='form-control' readonly value='Tidak tersedia (memakai estimasi radius)'></div>";
+    }
+
+    $field_biaya2 .= field_biaya($jenis_perkara_id, $pihak2, $biaya2, $urutan, $biaya_pos2);
+    $biaya_panggilan2 += biaya_panggilan($jenis_perkara_id, $pihak2, $biaya2, $urutan, $biaya_pos2);
   }
-
-  $field_biaya2 = field_biaya($jenis_perkara_id, $pihak2, $biaya2, '2', $biaya_pos2);
-  $biaya_panggilan2 = biaya_panggilan($jenis_perkara_id, $pihak2, $biaya2, '2', $biaya_pos2);
 }
 
 $panjar = $biaya_panggilan1 + $biaya_panggilan2 + 190000;
@@ -120,6 +141,10 @@ if ($stmt !== false) {
                     <div class="form-group col-6">
                       <label>Jenis</label>
                       <input type="text" class="form-control" readonly value="<?= h($row['nama']) ?> [<?= h($row['alur']) ?>]">
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Jumlah Penggugat</label>
+                      <input type="text" class="form-control" readonly value="<?= h($jumlah_penggugat) ?>">
                     </div>
                   </div><br><br>
 
