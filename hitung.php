@@ -99,7 +99,14 @@ if (count($kelurahan_list) == 0) {
   }
 }
 
-$panjar = $biaya_panggilan1 + $biaya_panggilan2 + 190000;
+// PNBP Panggilan = (jumlah penggugat + jumlah tergugat/termohon) x Rp10.000
+$jumlah_tergugat = count($kelurahan_list);
+$pnbp_panggilan  = ($jumlah_penggugat + $jumlah_tergugat) * 10000;
+
+// Total panjar = panggilan pihak 1 + panggilan pihak 2 + biaya tetap
+// (PNBP Pendaftaran 30.000 + Biaya Proses 100.000 + Redaksi 10.000 + Materai 10.000)
+// + PNBP Panggilan.
+$panjar = $biaya_panggilan1 + $biaya_panggilan2 + 150000 + $pnbp_panggilan;
 $rp_panjar = rp($panjar);
 
 // Prepared statement mencegah SQL Injection.
@@ -182,8 +189,8 @@ if ($stmt !== false) {
                   </div>
                   <div class="row">
                     <div class="form-group col-6">
-                      <label>PNBP Panggilan</label>
-                      <input type="text" class="form-control" readonly value="<?= rp(40000) ?>">
+                      <label>PNBP Panggilan (<?= h($jumlah_penggugat) ?> Penggugat + <?= h($jumlah_tergugat) ?> Tergugat) &times; <?= rp(10000) ?></label>
+                      <input type="text" class="form-control" readonly value="<?= rp($pnbp_panggilan) ?>">
                     </div>
                   </div><br><br>
 
