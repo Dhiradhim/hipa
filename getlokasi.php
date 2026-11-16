@@ -110,10 +110,10 @@
     // ===== Fitur tambah/hapus tergugat (hanya aktif di halaman form) =====
     var tergugatCount = 0;
 
-    // Perbarui label judul tiap blok tergugat menjadi "Tergugat 1", "Tergugat 2", dst.
+    // Perbarui label judul tiap blok tergugat menjadi "Tergugat/Termohon 1", "Tergugat/Termohon 2", dst.
     function renumberTergugat() {
         $('#tergugat-container .tergugat-item').each(function(i) {
-            $(this).find('.tergugat-title').text('Tergugat ' + (i + 1));
+            $(this).find('.tergugat-title').text('Tergugat/Termohon ' + (i + 1));
         });
     }
 
@@ -143,7 +143,7 @@
             '    </div>' +
             '  </div>' +
             '  <div class="form-group">' +
-            '    <button type="button" class="btn btn-danger btn-sm hapus-tergugat">Hapus Tergugat</button>' +
+            '    <button type="button" class="btn btn-danger btn-sm hapus-tergugat">Hapus Tergugat/Termohon</button>' +
             '  </div>' +
             '  <hr>' +
             '</div>';
@@ -156,19 +156,17 @@
 
     $(document).ready(function() {
         if ($('#tergugat-container').length) {
-            // Tergugat pertama otomatis ditampilkan.
-            buatTergugat();
+            // Secara default tidak ada pihak Tergugat/Termohon.
+            // Blok hanya ditambahkan manual melalui tombol "Tambah Tergugat/Termohon".
 
             $('#tambah-tergugat').on('click', function() {
                 buatTergugat();
             });
 
             $(document).on('click', '.hapus-tergugat', function() {
-                // Minimal harus ada satu tergugat.
-                if ($('#tergugat-container .tergugat-item').length > 1) {
-                    $(this).closest('.tergugat-item').remove();
-                    renumberTergugat();
-                }
+                // Semua blok boleh dihapus, termasuk yang terakhir.
+                $(this).closest('.tergugat-item').remove();
+                renumberTergugat();
             });
         }
     });

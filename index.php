@@ -50,7 +50,7 @@ include('fungsi.php');
                       </select>
                     </div>
                     <div class="form-group col-6">
-                      <label>Jumlah Penggugat</label>
+                      <label>Jumlah Penggugat/Pemohon</label>
                       <input type="number" class="form-control" name="jumlah_penggugat" min="1" value="1" required>
                     </div>
                   </div><br>
@@ -61,7 +61,7 @@ include('fungsi.php');
                   <div id="tergugat-container"></div>
                   <div class="form-group">
                     <button type="button" id="tambah-tergugat" class="btn btn-success btn-sm">
-                      + Tambah Tergugat
+                      + Tambah Tergugat/Termohon
                     </button>
                   </div>
 
