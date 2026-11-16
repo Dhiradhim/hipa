@@ -33,7 +33,7 @@ include('fungsi.php');
             </div>
             <div class="card card-primary">
               <div class="card-header">
-                <h4>Hitung Perkiraan Panjar Biaya Perkara</h4>
+                <h4>Hitung Prakiraan Panjar Biaya Perkara</h4>
               </div>
 
               <div class="card-body">
